@@ -11,25 +11,28 @@
       font-family: 'Quicksand', sans-serif;
       overflow-x: hidden;
       position: relative;
+      font-size: 20px;
     }
 
     .container {
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 30px;
     }
 
     input, button {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 8px;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 12px;
       border: none;
-      width: 220px;
+      width: 300px;
+      font-size: 18px;
     }
 
     button {
       background: #ff6f91;
       color: white;
       cursor: pointer;
+      font-weight: bold;
     }
 
     button:hover {
@@ -41,7 +44,7 @@
     }
 
     .scene {
-      perspective: 1200px;
+      perspective: 1500px;
     }
 
     .book-page {
@@ -57,43 +60,54 @@
 
     .paper {
       background: white;
-      padding: 30px;
-      border-radius: 12px;
+      padding: 50px;
+      border-radius: 16px;
       text-align: left;
-      max-width: 600px;
+      max-width: 850px;
       font-family: 'Dancing Script', cursive;
-      font-size: 1.3em;
+      font-size: 28px;
       color: black;
-      line-height: 25px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      background-image: repeating-linear-gradient(white 0px, white 24px, #ddd 25px);
+      line-height: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      background-image: repeating-linear-gradient(white 0px, white 30px, #ddd 31px);
     }
 
     .heart {
       position: fixed;
-      width: 15px;
-      height: 15px;
+      width: 25px;
+      height: 25px;
       background: red;
       transform: rotate(45deg);
       top: -10px;
       animation: fall linear infinite;
       opacity: 0.8;
+      z-index: 0;
     }
 
     .heart::before, .heart::after {
       content: '';
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 25px;
+      height: 25px;
       background: red;
       border-radius: 50%;
     }
-    .heart::before { top: -7px; left: 0;}
-    .heart::after { left: -7px; top: 0;}
+
+    .heart::before { top: -12px; left: 0;}
+    .heart::after { left: -12px; top: 0;}
 
     @keyframes fall {
       0% { top: -10px; opacity: 0.8; }
       100% { top: 100%; left: calc(100vw * var(--x)); opacity: 0; }
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    #wrong {
+      font-size: 24px !important;
     }
   </style>
 </head>
@@ -131,16 +145,16 @@
     <button onclick="answer('A')">A. <span id="a1"></span></button><br/>
     <button onclick="answer('B')">B. <span id="b1"></span></button><br/>
     <button onclick="answer('C')">C. <span id="c1"></span></button><br/>
-    <p id="wrong" style="color:#ff3366; font-size:1.2em; margin-top:15px; display:none;">
+    <p id="wrong" style="color:#ff3366; margin-top:15px; display:none;">
       😤 Chồng dỗi vợ 😤
     </p>
   </div>
 
-  <!-- Thư tình với hiệu ứng lật trang -->
+  <!-- Thư tình -->
   <div class="container scene hidden" id="letter1">
     <div class="book-page" id="page1">
       <div class="paper">
-        <p>Vậy là mình đã bên nhau tròn 1 năm. Một năm không dài, nhưng đủ để chồng biết rằng:</p>
+        <p>Vợ à, vậy là mình đã bên nhau tròn 1 njdfhdjldsmljgvdsklzmbdfăm...</p>
         <p><strong>Yêu vợ là điều đúng đắn nhất chồng từng làm.</strong></p>
       </div>
       <br/><button onclick="turnPage('page1','letter2')">Tiếp tục</button>
@@ -150,8 +164,8 @@
   <div class="container scene hidden" id="letter2">
     <div class="book-page" id="page2">
       <div class="paper">
-        <p> Cảm ơn vợ vì đã kiên nhẫn, yêu thương, và ở cạnh chồng, dù đôi lúc  chưa đủ tốt.</p>
-      <p>Chồng không hứa hẹn nhiều, nhưng chồng sẽ cố gắng mỗi ngày để xứng đáng với vợ – với tư cách là người chồng, người bạn và người đồng hành trọn đời.</p>
+        <p>Cảm ơn em vì đã kiên nhẫn và yêu thươnkmdsgklms kdfgskler kmgdkl gkhmdl dlgmkdlgmkg bên chồng...</p>
+        <p>Chồng sẽ cố gắng ngày càng tốt hơn.</p>
       </div>
       <br/><button onclick="turnPage('page2','letter3')">Tiếp tục</button>
     </div>
