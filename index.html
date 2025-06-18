@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kỷ niệm 1 năm yêu nhau</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: pink;
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    h1, h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      color: #fff;
+      text-shadow: 1px 1px 3px #d75d5d;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.1em;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+      width: 220px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff6f91;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      margin-top: 15px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background: #ff3f6c;
+    }
+
+    .paper {
+      background: #fffaf0;
+      padding: 30px;
+      border-radius: 12px;
+      display: inline-block;
+      text-align: left;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3em;
+      color: #333;
+    }
+
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      top: -10px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -7px;
+      top: 0;
+    }
+
+    .warning-message {
+      color: #ff3366;
+      font-style: italic;
+      font-size: 1em;
+      margin-top: 20px;
+      animation: fadeInShake 0.8s ease;
+      background-color: #ffe6f0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10px;
+        opacity: 0.8;
+      }
+      100% {
+        top: 100%;
+        left: calc(100vw * var(--x));
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInShake {
+      0% { opacity: 0; transform: translateY(10px) rotateZ(0deg); }
+      40% { opacity: 1; transform: translateY(0) rotateZ(2deg); }
+      60% { transform: rotateZ(-2deg); }
+      80% { transform: rotateZ(1deg); }
+      100% { transform: rotateZ(0deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- Đăng nhập -->
+  <div class="container" id="login">
+    <h1>Chào mừng bạn đến với thế giới tình yêu</h1>
+    <input type="text" placeholder="Tài khoản" id="username" /><br />
+    <input type="password" placeholder="Mật khẩu" id="password" /><br />
+    <button onclick="checkLogin()">Đăng nhập</button>
+    <p id="loginError" style="color: red;"></p>
+  </div>
+
+  <!-- Loading -->
+  <div class="container hidden" id="loading">
+    <h2>Đang tính ngày yêu...</h2>
+    <p id="days"></p>
+  </div>
+
+  <!-- Chọn gói -->
+  <div class="container hidden" id="choosePackage">
+    <h2>Vui lòng chọn gói</h2>
+    <button onclick="selectPackage(1)">Premium_1 năm</button><br /><br />
+    <button onclick="selectPackage(2)">Ultra_5 năm</button><br /><br />
+    <button onclick="selectPackage(3)">Fantastic_10 năm</button>
+    <p id="packageWarning" class="warning-message hidden">
+      👉 Gói này chưa khả dụng đâu vợ ơi 😝! Chọn lại giúp chồng nhen 💕
+    </p>
+  </div>
+
+  <!-- Câu hỏi -->
+  <div class="container hidden" id="question">
+    <h2 id="questionText"></h2>
+    <button onclick="answer('A')">A</button>
+    <button onclick="answer('B')">B</button>
+    <button onclick="answer('C')">C</button>
+  </div>
+
+  <!-- Thư tình -->
+  <div class="container hidden" id="letter1">
+    <div class="paper">
+      <p>Vợ à,</p>
+      <p>Vậy là mình đã bên nhau tròn 1 năm. Một năm không dài, nhưng đủ để chồng biết rằng:</p>
+      <p><strong>Yêu vợ là điều đúng đắn nhất chồng từng làm.</strong></p>
+    </div>
+    <br />
+    <button onclick="next('letter2')">Tiếp tục</button>
+  </div>
+
+  <div class="container hidden" id="letter2">
+    <div class="paper">
+      <p>Cảm ơn em vì đã kiên nhẫn, yêu thương, và ở cạnh anh, dù đôi lúc anh chưa đủ tốt.</p>
+      <p>Chồng không hứa hẹn nhiều, nhưng chồng sẽ cố gắng mỗi ngày để xứng đáng với vợ – với tư cách là người chồng, người bạn và người đồng hành trọn đời.</p>
+    </div>
+    <br />
+    <button onclick="next('letter3')">Tiếp tục</button>
+  </div>
+
+  <div class="container hidden" id="letter3">
+    <div class="paper">
+      <p>Chúc mình 1 năm thật đẹp – và nhiều năm nữa cùng nhau.</p>
+      <p><strong>Yêu vợ 😘😘😘.</strong><br/>Chồng.</p>
+    </div>
+    <br />
+    <button onclick="next('theEnd')">Tiếp tục</button>
+  </div>
+
+  <!-- Kết -->
+  <div class="container hidden" id="theEnd">
+    <h2>Hết rồi nha má 😅</h2>
+    <button onclick="next('bonus')">Nhưng</button>
+  </div>
+
+  <!-- Bonus -->
+  <div class="container hidden" id="bonus">
+    <h2>Tui còn cái này nè má</h2>
+    <button onclick="window.location.href='LINK_CUA_BAN.html'">👉🐽👈</button>
+  </div>
+
+</div>
+
+<script>
+  // Tim rơi
+  for (let i = 0; i < 30; i++) {
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+    heart.style.setProperty('--x', Math.random());
+    document.body.appendChild(heart);
+  }
+
+  // Đăng nhập
+  function checkLogin() {
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+    if (u === "kyniem1nam" && p === "18072024") {
+      next("loading");
+      let i = 1;
+      let interval = setInterval(() => {
+        document.getElementById("days").innerText = ${i} ngày...;
+        i++;
+        if (i > 365) {
+          clearInterval(interval);
+          next("choosePackage");
+        }
+      }, 10);
+    } else {
+      document.getElementById("loginError").innerText = "Sai tài khoản hoặc mật khẩu rồi nè 😢";
+    }
+  }
+
+  // Câu hỏi
+  const questions = [
+    { q: "Lần đầu gặp mặt ở đâu?", correct: "A", A: "Chinh", B: "Ánh Dương", C: "Phúc Long" },
+    { q: "Chồng ghét ăn gì nhất?", correct: "C", A: "Hà Mã", B: "Bún Riêu", C: "Miến" },
+    { q: "Nhìn vợ giống con gì?", correct: "B", A: "Sư tử", B: "Hà Mã", C: "Cá Mập" }
+  ];
+  let currentQ;
+
+  function selectPackage(pkg) {
+    const warning = document.getElementById("packageWarning");
+    warning.classList.add("hidden");
+
+    if (pkg === 1) {
+      next("question");
+      currentQ = questions[Math.floor(Math.random() * questions.length)];
+      document.getElementById("questionText").innerHTML = `
+        ${currentQ.q}<br/><br/>
+        A: ${currentQ.A}<br/>
+        B: ${currentQ.B}<br/>
+        C: ${currentQ.C}
+      `;
+    } else {
+      warning.classList.remove("hidden");
+      warning.style.animation = 'none';
+      warning.offsetHeight;
+      warning.style.animation = null;
+    }
+  }
+
+  function answer(opt) {
+    if (opt === currentQ.correct) {
+      next("letter1");
+    } else {
+      const warning = document.getElementById("packageWarning");
+      next("choosePackage");
+      warning.innerText = "😠 Trả lời sai rồi vợ ơi! Chọn lại từ đầu nhen!";
+      warning.classList.remove("hidden");
+      warning.style.animation = 'none';
+      warning.offsetHeight;
+      warning.style.animation = null;
+    }
+  }
+
+  function next(id) {
+    document.querySelectorAll(".container").forEach(c => c.classList.add("hidden"));
+    document.getElementById(id).classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
