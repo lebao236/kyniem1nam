@@ -5,111 +5,127 @@
   <title>Kỷ niệm 1 năm yêu nhau</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      background-color: lightpink;
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
-      position: relative;
-      font-size: 20px;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  background: url('https://raw.githubusercontent.com/lebao236/kyniem1nam/f24a153e4656fa92879322cdb7d63030af169534/jj.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .container {
-      text-align: center;
-      padding: 60px 30px;
-    }
+.container {
+  text-align: center;
+  padding: 60px 30px;
+  color: yellow;
+}
 
-    input, button {
-      padding: 15px;
-      margin: 10px;
-      border-radius: 12px;
-      border: none;
-      width: 300px;
-      font-size: 18px;
-    }
+input, button {
+  padding: 15px;
+  margin: 10px;
+  border-radius: 12px;
+  border: none;
+  width: 300px;
+  font-size: 18px;
+}
 
-    button {
-      background: #ff6f91;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
+button {
+  background: #ff6f91;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    button:hover {
-      background: #ff3f6c;
-    }
+button:hover {
+  background: #ff3f6c;
+}
 
-    .hidden {
-      display: none;
-    }
+.hidden {
+  display: none;
+}
 
-    .scene {
-      perspective: 1500px;
-    }
+.scene {
+  perspective: 1500px;
+}
 
-    .book-page {
-      display: inline-block;
-      transform-style: preserve-3d;
-      transition: transform 1.2s ease-in-out;
-    }
+.book-page {
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease-in-out;
+}
 
-    .page-turn {
-      transform: rotateY(-180deg);
-      pointer-events: none;
-    }
+.page-turn {
+  transform: rotateY(-180deg);
+  pointer-events: none;
+}
 
-    .paper {
-      background: white;
-      padding: 50px;
-      border-radius: 16px;
-      text-align: left;
-      max-width: 850px;
-      font-family: 'Dancing Script', cursive;
-      font-size: 28px;
-      color: black;
-      line-height: 40px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      background-image: repeating-linear-gradient(white 0px, white 30px, #ddd 31px);
-    }
+.paper {
+  background: white;
+  padding: 50px;
+  border-radius: 16px;
+  text-align: left;
+  max-width: 850px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  color: black;
+  line-height: 40px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  background-image: repeating-linear-gradient(white 0px, white 30px, #ddd 31px);
+}
 
-    .heart {
-      position: fixed;
-      width: 25px;
-      height: 25px;
-      background: red;
-      transform: rotate(45deg);
-      top: -10px;
-      animation: fall linear infinite;
-      opacity: 0.8;
-      z-index: 0;
-    }
+.heart {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  background: red;
+  transform: rotate(45deg);
+  top: -10px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+  z-index: 0;
+}
 
-    .heart::before, .heart::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background: red;
-      border-radius: 50%;
-    }
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: red;
+  border-radius: 50%;
+}
 
-    .heart::before { top: -12px; left: 0;}
-    .heart::after { left: -12px; top: 0;}
+.heart::before { top: -12px; left: 0;}
+.heart::after { left: -12px; top: 0;}
 
-    @keyframes fall {
-      0% { top: -10px; opacity: 0.8; }
-      100% { top: 100%; left: calc(100vw * var(--x)); opacity: 0; }
-    }
+@keyframes fall {
+  0% { top: -10px; opacity: 0.8; }
+  100% { top: 100%; left: calc(100vw * var(--x)); opacity: 0; }
+}
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
-    }
+h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
 
-    #wrong {
-      font-size: 24px !important;
-    }
-  </style>
+#wrong {
+  font-size: 24px !important;
+}
+
+/* ✅ THÊM VÀO ĐÂY: Đăng nhập trong suốt & ra giữa */
+#login {
+  background: rgba(255, 255, 255, 0.00000000000000000000000000000000002); /* Trong suốt nhẹ */
+  backdrop-filter: blur(5px);          /* Hiệu ứng làm mờ nền sau */
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -126,7 +142,7 @@
   <!-- Loading -->
   <div class="container hidden" id="loading">
     <h2>Đang tính ngày yêu...</h2>
-    <p id="days">1 ngày...</p>
+    <p id="days">0 ngày...</p>
   </div>
 
   <!-- Chọn gói -->
@@ -135,7 +151,7 @@
     <button onclick="selectPackage(1)">Premium_1 Năm</button><br/><br/>
     <button onclick="selectPackage(2)">Fantastic_2 Năm</button><br/><br/>
     <button onclick="selectPackage(3)">Ultra_5 Năm</button>
-    <p id="warning" style="color:#ff3366; display:none; margin-top:20px;">👉 Không đủ số dưdư 😝</p>
+    <p id="warning" style="color:#ff3366; display:none; margin-top:20px;">👉 Không đủ số dư 😝</p>
   </div>
 
   <!-- Câu hỏi -->
@@ -174,8 +190,8 @@
   <div class="container scene hidden" id="letter3">
     <div class="book-page" id="page3">
       <div class="paper">
-        <<p>Chúc mình 1 năm thật đẹp – và nhiều năm nữa cùng nhau.</p>
-      <p><strong>Yêu vợ 😘😘😘.</strong> <p><br/>Chồng.</p>
+        <p>Chúc mình 1 năm thật đẹp – và nhiều năm nữa cùng nhau.</p>
+      <p><strong>Yêu vợ 😘😘😘.</strong> <p><br/>Nguyễn Thu Chồng.</p>
       </div>
       <br/><button onclick="next('final')">Tiếp tục</button>
     </div>
@@ -183,7 +199,7 @@
 
   <!-- Kết -->
   <div class="container hidden" id="final">
-    <h2>Hết rồi nha 😉</h2>
+    <h2>Hết rồi nha bà 😉</h2>
     <button onclick="next('bonus')">Nhưng...</button>
   </div>
 
