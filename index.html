@@ -231,17 +231,30 @@ h2 {
     setTimeout(() => next(nextId), 1200);
   }
 
-  function checkLogin(){
-    const u = document.getElementById('username').value;
-    const p = document.getElementById('password').value;
-    if(u==='kyniem1nam' && p==='18072024'){
-      next('loading');
-      let i=1, t=setInterval(()=>{
-        document.getElementById('days').innerText = i+' ngày...';
-        if(i++>=365){clearInterval(t); next('choose');}
-      },10);
-    } else document.getElementById('loginError').innerText='Sai rồi vợ ơi 😢';
+ function checkLogin(){
+  const u = document.getElementById('username').value;
+  const p = document.getElementById('password').value;
+
+  if(u==='kyniem1nam' && p==='18072024'){
+    document.body.classList.add('logged-in');
+
+    // Phát nhạc khi người dùng đã click vào nút
+    const music = document.getElementById('bgm');
+    if (music) {
+      music.play().catch((e) => {
+        console.log('Trình duyệt đang chặn autoplay:', e);
+      });
+    }
+
+    next('loading');
+    let i=1, t=setInterval(()=>{
+      document.getElementById('days').innerText = i+' ngày...';
+      if(i++>=365){clearInterval(t); next('choose');}
+    },10);
+  } else {
+    document.getElementById('loginError').innerText='Sai rồi vợ ơi 😢';
   }
+}
 
   function selectPackage(p){
     document.getElementById('warning').style.display='none';
@@ -271,9 +284,9 @@ h2 {
     else document.getElementById('wrong').style.display='block';
   }
 </script>
-<audio autoplay loop>
+<audio id="bgm" loop preload="auto">
   <source src="https://raw.githubusercontent.com/lebao236/kyniem1nam/main/Ph%C3%A9p%20M%C3%A0u%20(%C4%90%C3%A0n%20c%C3%A1%20g%E1%BB%97%20OST)%20-%20MAYDAYs%20ft.%20Minh%20T%E1%BB%91c%20%20Offical%20MV.mp3" type="audio/mpeg">
-  Trình duyệt không hỗ trợ phát nhạc.
+  Trình duyệt bạn không hỗ trợ phát nhạc.
 </audio>
 </body>
 </html>
